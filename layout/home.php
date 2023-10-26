@@ -158,6 +158,8 @@ if (!isset($_SESSION["idUser"])) {
             });
         <?php unset($_SESSION['statusLogin']);
         endif; ?>
+
+        
         <?php if (isset($_SESSION['success'])) : ?>
             Swal.fire({
                 position: 'center',
