@@ -2,19 +2,19 @@
 require '../koneksi.php';
 require '../controller/userController.php';
 
-$crud = new crud();
+$crud = new crudUser();
 $result = $crud->index();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') :
     $action = $_POST['action'];
 
     if ($action === 'add') {
-        $username = $_POST['Username'];
-        $namaUser = $_POST['Nama_User'];
-        $email = $_POST['Email'];
-        $pass = $_POST['Password'];
+        $username = htmlspecialchars ($_POST['Username']);
+        $namaUser = htmlspecialchars ($_POST['Nama_User']);
+        $email = htmlspecialchars ($_POST['Email']);
+        $pass = htmlspecialchars ($_POST['Password']);
         $hash = md5($pass);
-        $level = $_POST['Level'];
+        $level = htmlspecialchars ($_POST['Level']);
         $crud->tambah($username, $namaUser, $email, $hash, $level);
     } elseif ($action === 'edit') {
         $id = $_POST['Id_User'];
@@ -196,7 +196,7 @@ endif;
 
 <script>
     function edit(data) {
-        // console.log(data);
+        console.log(data);
         document.getElementById('usernameEdit').value = data.Username
         document.getElementById('nameEdit').value = data.Nama_User
         document.getElementById('emailEdit').value = data.Email
