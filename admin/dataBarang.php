@@ -55,6 +55,9 @@
                             <td><?= $data['Harga_Jual']; ?></td>
                             <td><?= $data['Stok']; ?></td>
                             <td>
+                                <button type="button" class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
+                                    <span class="text">Detail</span>
+                                </button>
                                 <button type="button" class="btn btn-warning btn-icon-split" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
                                     <span class="icon text-white-50">
                                         <i class="fas fa-pen"></i>
@@ -121,3 +124,61 @@
         </div>
     </div>
 </div>
+
+<!-- DetailModal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Barang</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataUser" method="post" id="formEdit">
+                    <div class="mb-3">
+                        <label for="">Jenis Barang</label>
+                        <input name="JenisBarang" id="jenisbarangDetail" class="form-control" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Supplier</label>
+                        <input type="text" name="id_Supplier" id="id_supplierDetail" class="form-control" readonly>
+                    </div>
+
+                    <input type="hidden" name="Id_User" id="idEdit">
+                    <input type="hidden" name="action" value="edit">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function detail(data) {
+        console.log(data);
+        // document.getElementById('jenisbarangDetail').value = data.JenisBarang
+        // document.getElementById('id_supplierDetail').value = data.id_Supplier
+        <?php  
+        $id_barang = $_POST['id_barang']; // Gantilah sesuai dengan cara Anda mendapatkan ID barang
+
+        $sql = "SELECT barang.id_barang, barang.nama_barang, jenis_barang.nama_jenis FROM barangINNER JOIN jenis_barang ON barang.id_jenis_barang = jenis_barang.id_jenis_barang WHERE barang.id_barang = $id_barang";
+        $result = $koneksi->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Ambil hasil query
+            $row = $result->fetch_assoc();
+
+            $nama_barang = $row['nama_barang'];
+            $nama_jenis = $row['nama_jenis'];
+
+            // Gunakan $nama_barang dan $nama_jenis sesuai kebutuhan Anda
+            // Misalnya, mengisi elemen-elemen HTML dengan data tersebut
+        } else {
+            echo "Barang tidak ditemukan.";
+        }
+        ?>
+    };
+</script>
