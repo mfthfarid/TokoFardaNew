@@ -5,8 +5,8 @@
 
     $crud = new crudBarang();
     $result = $crud->index();
-
-    
+    $jenisBarang = $crud->jenisBarang();
+    $supplier = $crud->supplier();
 ?>
 
 <!-- DataTales Example -->
@@ -28,7 +28,6 @@
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Tanggal Expired</th>
-                        <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
@@ -39,7 +38,6 @@
                     <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Tanggal Expired</th>
-                        <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
@@ -51,7 +49,6 @@
                             <td><?= $data['Kode_Barang']; ?></td>
                             <td><?= $data['Nama_Barang']; ?></td>
                             <td><?= $data['Tgl_Expired']; ?></td>
-                            <td><?= $data['Harga_Beli']; ?></td>
                             <td><?= $data['Harga_Jual']; ?></td>
                             <td><?= $data['Stok']; ?></td>
                             <td>
@@ -66,6 +63,12 @@
                                         <i class="fas fa-trash"></i>
                                     </span>
                                     <span class="text">Hapus</span>
+                                </button>
+                                <button type="button" class="btn btn-info btn-icon-split" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span class="text">Detail</span>
                                 </button>
                             </td>
                         </tr>
@@ -121,3 +124,83 @@
         </div>
     </div>
 </div>
+
+<!-- DetailModal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Barang</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="">Harga Beli</label>
+                        <input type="text" name="Harga_Beli" id="hargaBeli" class="form-control" readonly required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Jenis Barang</label>
+                        <select name="Jenis_Barang" class="form-select" id="jenisBarang" disabled>
+                            <option selected disabled>Pilih Jenis Barang</option>
+                            <?php foreach ($jenisBarang as $key => $value) {
+                            ?>
+                                <option value="<?= $value['id_JenisBarang']; ?>"><?= $value['Jenis_Barang']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Supplier</label>
+                        <select name="Nama_Supplier" class="form-select" id="namaSupplier" disabled>
+                            <option selected disabled>Pilih Supplier</option>
+                            <?php foreach ($supplier as $key => $value) {
+                            ?>
+                                <option value="<?= $value['id_Supplier']; ?>"><?= $value['Nama_Supplier']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function edit(data) {
+        // console.log(data);
+        document.getElementById('usernameEdit').value = data.Username
+        document.getElementById('nameEdit').value = data.Nama_User
+        document.getElementById('emailEdit').value = data.Email
+        document.getElementById('levelEdit').value = data.Level
+        document.getElementById('idEdit').value = data.Id_User
+    };
+
+    function detail(data) {
+        // console.log(data);
+        document.getElementById('hargaBeli').value = data.Harga_Beli
+        document.getElementById('jenisBarang').value = data.id_jenisBarang
+        document.getElementById('namaSupplier').value = data.id_Supplier
+        document.getElementById('jenisBarang').value = data.id_JenisBarang
+    };
+
+    function confirmDelete(userId) {
+        console.log(userId);
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Anda yakin ingin menghapus data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('idDelete').value = userId;
+                document.getElementById('formDelete').submit();
+            }
+        });
+    };
+</script>
