@@ -5,8 +5,8 @@
 
     $crud = new crudBarang();
     $result = $crud->index();
-
-    
+    $jenisBarang = $crud->jenisBarang();
+    $supplier = $crud->supplier();
 ?>
 
 <!-- DataTales Example -->
@@ -28,7 +28,6 @@
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Tanggal Expired</th>
-                        <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
@@ -39,7 +38,6 @@
                     <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Tanggal Expired</th>
-                        <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
@@ -51,13 +49,9 @@
                             <td><?= $data['Kode_Barang']; ?></td>
                             <td><?= $data['Nama_Barang']; ?></td>
                             <td><?= $data['Tgl_Expired']; ?></td>
-                            <td><?= $data['Harga_Beli']; ?></td>
                             <td><?= $data['Harga_Jual']; ?></td>
                             <td><?= $data['Stok']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
-                                    <span class="text">Detail</span>
-                                </button>
                                 <button type="button" class="btn btn-warning btn-icon-split" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
                                     <span class="icon text-white-50">
                                         <i class="fas fa-pen"></i>
@@ -69,6 +63,12 @@
                                         <i class="fas fa-trash"></i>
                                     </span>
                                     <span class="text">Hapus</span>
+                                </button>
+                                <button type="button" class="btn btn-info btn-icon-split" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span class="text">Detail</span>
                                 </button>
                             </td>
                         </tr>
@@ -134,22 +134,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataUser" method="post" id="formEdit">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="">Harga Beli</label>
+                        <input type="text" name="Harga_Beli" id="hargaBeli" class="form-control" readonly required>
+                    </div>
                     <div class="mb-3">
                         <label for="">Jenis Barang</label>
-                        <input name="JenisBarang" id="jenisbarangDetail" class="form-control" readonly>
+                        <select name="Jenis_Barang" class="form-select" id="jenisBarang" disabled>
+                            <option selected disabled>Pilih Jenis Barang</option>
+                            <?php foreach ($jenisBarang as $key => $value) {
+                            ?>
+                                <option value="<?= $value['id_JenisBarang']; ?>"><?= $value['Jenis_Barang']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="">Supplier</label>
-                        <input type="text" name="id_Supplier" id="id_supplierDetail" class="form-control" readonly>
+                        <select name="Nama_Supplier" class="form-select" id="namaSupplier" disabled>
+                            <option selected disabled>Pilih Supplier</option>
+                            <?php foreach ($supplier as $key => $value) {
+                            ?>
+                                <option value="<?= $value['id_Supplier']; ?>"><?= $value['Nama_Supplier']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
-
-                    <input type="hidden" name="Id_User" id="idEdit">
-                    <input type="hidden" name="action" value="edit">
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
                     </div>
                 </form>
             </div>
@@ -157,28 +168,39 @@
     </div>
 </div>
 <script>
+    function edit(data) {
+        // console.log(data);
+        document.getElementById('usernameEdit').value = data.Username
+        document.getElementById('nameEdit').value = data.Nama_User
+        document.getElementById('emailEdit').value = data.Email
+        document.getElementById('levelEdit').value = data.Level
+        document.getElementById('idEdit').value = data.Id_User
+    };
+
     function detail(data) {
-        console.log(data);
-        document.getElementById('jenisbarangDetail').value = data.JenisBarang
-        document.getElementById('id_supplierDetail').value = data.id_Supplier
-        <?php  
-        $id_barang = $_POST['id_barang']; // Gantilah sesuai dengan cara Anda mendapatkan ID barang
+        // console.log(data);
+        document.getElementById('hargaBeli').value = data.Harga_Beli
+        document.getElementById('jenisBarang').value = data.id_jenisBarang
+        document.getElementById('namaSupplier').value = data.id_Supplier
+        document.getElementById('jenisBarang').value = data.id_JenisBarang
+    };
 
-        $sql = "SELECT barang.id_barang, barang.nama_barang, jenis_barang.nama_jenis FROM barangINNER JOIN jenis_barang ON barang.id_jenis_barang = jenis_barang.id_jenis_barang WHERE barang.id_barang = $id_barang";
-        $result = $koneksi->query($sql);
-
-        if ($result->num_rows > 0) {
-            // Ambil hasil query
-            $row = $result->fetch_assoc();
-
-            $nama_barang = $row['nama_barang'];
-            $nama_jenis = $row['nama_jenis'];
-
-            // Gunakan $nama_barang dan $nama_jenis sesuai kebutuhan Anda
-            // Misalnya, mengisi elemen-elemen HTML dengan data tersebut
-        } else {
-            echo "Barang tidak ditemukan.";
-        }
-        ?>
+    function confirmDelete(userId) {
+        console.log(userId);
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Anda yakin ingin menghapus data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('idDelete').value = userId;
+                document.getElementById('formDelete').submit();
+            }
+        });
     };
 </script>
