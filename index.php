@@ -47,7 +47,7 @@
                                             <input type="password" name="Password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
+                                            Logi
                                         </button>
                                     </form>
                                     <hr>

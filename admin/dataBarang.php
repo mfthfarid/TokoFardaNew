@@ -159,8 +159,8 @@
 <script>
     function detail(data) {
         console.log(data);
-        // document.getElementById('jenisbarangDetail').value = data.JenisBarang
-        // document.getElementById('id_supplierDetail').value = data.id_Supplier
+        document.getElementById('jenisbarangDetail').value = data.JenisBarang
+        document.getElementById('id_supplierDetail').value = data.id_Supplier
         <?php  
         $id_barang = $_POST['id_barang']; // Gantilah sesuai dengan cara Anda mendapatkan ID barang
 
