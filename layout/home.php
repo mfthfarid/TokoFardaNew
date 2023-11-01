@@ -26,8 +26,6 @@ if (!isset($_SESSION["idUser"])) {
             Data Barang
         <?php elseif ($_GET['page'] == 'dataSupplier') : ?>
             Data Supplier
-        <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
-            Data Jenis Barang
         <?php endif; ?>
     </title>
 
@@ -85,8 +83,6 @@ if (!isset($_SESSION["idUser"])) {
                         include '../admin/dataBarang.php';
                     } elseif ($_GET['page'] == 'dataSupplier') {
                         include '../admin/dataSupplier.php';
-                    } elseif ($_GET['page'] == 'dataJenisbarang') {
-                        include '../admin/dataJenisbarang.php';
                     }
                     ?>
 
