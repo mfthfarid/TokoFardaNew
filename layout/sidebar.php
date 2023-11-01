@@ -26,7 +26,7 @@
         Menu
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Pages Collapse Menu -->  
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -37,6 +37,8 @@
                 <h6 class="collapse-header">Master Menu:</h6>
                 <a class="collapse-item" href="?page=dataUser">Data User</a>
                 <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
+                <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
+                <a class="collapse-item" href="?page=dataJenisbarang">Data Jenis Barang</a>
             </div>
         </div>
     </li>
