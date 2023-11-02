@@ -23,10 +23,10 @@
         }
     }
 
-    public function edit($jenisbarang)
+    public function edit($jenisbarang, $id)
     {
         try {
-            $query = "UPDATE jenis_barang SET Jenis_Barang='$jenisbarang', WHERE id_JenisBarang='$id'";
+            $query = "UPDATE jenis_barang SET Jenis_Barang='$jenisbarang' WHERE id_JenisBarang='$id'";
             $result = $this->execute($query);
 
             if ($result == true) {

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') :
     } elseif ($action === 'edit') {
         $id = $_POST['id_JenisBarang'];
         $jenisbarang = htmlspecialchars ($_POST['Jenis_Barang']);
-        $crud->tambah($jenisbarang);
+        $crud->edit($jenisbarang, $id);
     } elseif ($action === 'delete') {
         if (isset($_POST['id'])) {
             $id = htmlspecialchars($_POST['id']);
@@ -39,14 +39,14 @@ endif;
                 </button>
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>Id</th>
                         <th>Jenis Barang</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>No</th>
+                        <th>Id</th>
                         <th>Jenis Barang</th>
                         <th>Aksi</th>
                     </tr>
@@ -78,6 +78,7 @@ endif;
     </div>
 </div>
 
+<!-- Tambah Jenis Barang -->
 <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -108,6 +109,38 @@ endif;
     </div>
 </div>
 
+<!-- EditJenisBarang -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jenis Barang</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataJenisbarang" method="post" id="formEdit">
+                    <div class="mb-3">
+                        <label for="">Id Jenis Barang</label>
+                        <input type="text" name="id_JenisBarang" class="form-control" placeholder="Masukan Id" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Jenis Barang</label>
+                        <input type="text" name="Jenis_Barang" class="form-control" placeholder="Masukan Jenis Barang" required>
+                    </div>
+
+                    <input type="hidden" name="id_JenisBarang" id="idEdit">
+                    <input type="hidden" name="action" value="edit">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataJenisbarang" id="formDelete" method="POST">
     <input type="hidden" name="id" id="idDelete">
     <input type="hidden" name="action" value="delete">
@@ -115,12 +148,9 @@ endif;
 
 <script>
     function edit(data) {  
-        // console.log(data);
-        document.getElementById('usernameEdit').value = data.Username
-        document.getElementById('nameEdit').value = data.Nama_User
-        document.getElementById('emailEdit').value = data.Email
-        document.getElementById('levelEdit').value = data.Level
-        document.getElementById('idEdit').value = data.Id_User
+        console.log(data);
+        document.getElementById('jenisbarangEdit').value = data.Jenis_Barang
+        document.getElementById('idEdit').value = data.id_JenisBarang
     };
 
     function confirmDelete(userId) {
