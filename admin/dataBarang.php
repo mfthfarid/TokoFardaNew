@@ -7,6 +7,42 @@
     $result = $crud->index();
     $jenisBarang = $crud->jenisBarang();
     $supplier = $crud->supplier();
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') :
+        $action = $_POST['action'];
+    
+        if ($action === 'add') {
+            $kodeBarang = htmlspecialchars($_POST['Kode_Barang']);
+            $namaBarang = htmlspecialchars($_POST['Nama_Barang']);
+            $tanggal = htmlspecialchars($_POST['Tgl_Expired']);
+            $hargaBeli = htmlspecialchars($_POST['Harga_Beli']);
+            $hargaBeli1 = str_replace(',', '', $hargaBeli);
+            $hargaJual = htmlspecialchars($_POST['Harga_Jual']);
+            $hargaJual1 = str_replace(',', '', $hargaJual);
+            $stok = htmlspecialchars($_POST['Stok']);
+            $jenisBarang = htmlspecialchars($_POST['id_JenisBarang']);
+            $supplier = htmlspecialchars($_POST['id_Supplier']);
+            // var_dump($kodeBarang, $namaBarang, $tanggal, $hargaBeli1, $hargaJual1, $stok, $jenisBarang, $supplier);
+            $crud->tambah($kodeBarang, $namaBarang, $tanggal, $hargaBeli1, $hargaJual1, $stok, $jenisBarang, $supplier);
+        } elseif ($action === 'edit') {
+            $kodeBarang = $_POST['Kode_Barang'];
+            $namaBarang = htmlspecialchars($_POST['Nama_Barang']);
+            $tanggal = htmlspecialchars($_POST['Tgl_Expired']);
+            $hargaBeli = htmlspecialchars($_POST['Harga_Beli']);
+            $hargaBeli1 = str_replace(',', '', $hargaBeli);
+            $hargaJual = htmlspecialchars($_POST['Harga_Jual']);
+            $hargaJual1 = str_replace(',', '', $hargaJual);
+            $stok = htmlspecialchars($_POST['Stok']);
+            $jenisBarang = htmlspecialchars($_POST['id_JenisBarang']);
+            $supplier = htmlspecialchars($_POST['id_Supplier']);
+            $crud->edit($kodeBarang, $namaBarang, $tanggal, $hargaBeli1, $hargaJual1, $stok, $jenisBarang, $supplier);
+        } elseif ($action === 'delete') {
+            if (isset($_POST['Kode_Barang'])) {
+                $kodeBarang = htmlspecialchars($_POST['Kode_Barang']);
+                $crud->hapus($kodeBarang);
+            }
+        }
+    endif;
 ?>
 
 <!-- DataTales Example -->
@@ -52,11 +88,11 @@
                             <td><?= $data['Harga_Jual']; ?></td>
                             <td><?= $data['Stok']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-icon-split" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
-                                    <span class="icon text-white-50">
+                                <button type="button" class="btn btn-warning btn-circle" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
+                                    <!-- <span class="icon text-white-50"> -->
                                         <i class="fas fa-pen"></i>
-                                    </span>
-                                    <span class="text">Edit</span>
+                                    <!-- </span>
+                                    <span class="text">Edit</span> -->
                                 </button>
                                 <button type="button" class="btn btn-danger btn-icon-split" onclick="confirmDelete(<?= $data['Kode_Barang']; ?>)">
                                     <span class="icon text-white-50">
@@ -123,7 +159,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 
 <!-- DetailModal -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
