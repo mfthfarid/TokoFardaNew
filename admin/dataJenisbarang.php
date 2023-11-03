@@ -54,7 +54,7 @@ endif;
                 <tbody>
                     <?php foreach ($result as $key => $data) : ?>
                         <tr>
-                            <td><?= $data['id_JenisBarang']; ?></td>
+                             <td><?= $key + 1; ?></td>
                             <td><?= $data['Jenis_Barang']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-icon-split" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
@@ -89,15 +89,9 @@ endif;
             <div class="modal-body">
                 <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataJenisbarang" method="POST">
                     <div class="mb-3">
-                        <label for="">Id Jenis Barang</label>
-                        <input type="text" name="id_JenisBarang" class="form-control" placeholder="Masukan Id" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="">Jenis Barang</label>
                         <input type="text" name="Jenis_Barang" class="form-control" placeholder="Masukan Jenis Barang" required>
                     </div>
-                    
-
                     <input type="hidden" name="action" value="add">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -120,9 +114,6 @@ endif;
             <div class="modal-body">
                 <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataJenisbarang" method="post" id="formEdit">
                     <div class="mb-3">
-                        <label for="">Id Jenis Barang</label>
-                        <input type="text" name="id_JenisBarang" id="idEdit" class="form-control" placeholder="Masukan Id" required>
-                    </div>
                     <div class="mb-3">
                         <label for="">Jenis Barang</label>
                         <input type="text" name="Jenis_Barang" id="jenisbarangEdit" class="form-control" placeholder="Masukan Jenis Barang" required>
