@@ -63,7 +63,7 @@ endif;
                                     </span>
                                     <span class="text">Edit</span>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-icon-split" onclick="confirmDelete(<?= $data['id_JenisBarang']; ?>)">
+                                <button type="button" class="btn btn-danger btn-icon-split" <?php echo "onclick='confirmDelete($data[id_JenisBarang])'" ?>>
                                     <span class="icon text-white-50">
                                         <i class="fas fa-trash"></i>
                                     </span>
@@ -121,11 +121,11 @@ endif;
                 <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataJenisbarang" method="post" id="formEdit">
                     <div class="mb-3">
                         <label for="">Id Jenis Barang</label>
-                        <input type="text" name="id_JenisBarang" class="form-control" placeholder="Masukan Id" required>
+                        <input type="text" name="id_JenisBarang" id="idEdit" class="form-control" placeholder="Masukan Id" required>
                     </div>
                     <div class="mb-3">
                         <label for="">Jenis Barang</label>
-                        <input type="text" name="Jenis_Barang" class="form-control" placeholder="Masukan Jenis Barang" required>
+                        <input type="text" name="Jenis_Barang" id="jenisbarangEdit" class="form-control" placeholder="Masukan Jenis Barang" required>
                     </div>
 
                     <input type="hidden" name="id_JenisBarang" id="idEdit">
