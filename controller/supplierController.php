@@ -12,7 +12,7 @@ class crudSupplier extends koneksi
     public function tambah($namaSupplier, $noTelp, $alamat)
     {
         try {
-            $query = "INSERT INTO supplier (Nama_Supplier,No_Telp,Alamat,) value ('$namaSupplier','$noTelp','$alamat')";
+            $query = "INSERT INTO supplier (Nama_Supplier,No_Telp,Alamat) value ('$namaSupplier','$noTelp','$alamat')";
             $result = $this->execute($query);
 
             if ($result == true) :
@@ -47,7 +47,7 @@ class crudSupplier extends koneksi
 
     public function hapus($id)
     {
-        $query = "DELETE FROM supplier WHERE Id_Supplier='$id'";
+        $query = "DELETE FROM supplier WHERE id_Supplier='$id'";
         $result = $this->execute($query);
 
         if ($result == true) {

@@ -112,7 +112,7 @@ endif;
                     <div class="mb-3">
                         <label for="">Alamat</label>
                         <input type="text" name="Alamat" class="form-control" placeholder="Masukan Alamat" required>
-                    </div>
+                    </div>   
                     <input type="hidden" name="action" value="add">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
