@@ -125,3 +125,28 @@
         </div>
     </div>
 </div>
+
+<!-- DetailModal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Hutang</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="">Nama Pelanggan</label>
+                        <input type="text" name="Nama_Pelanggan" id="namaPelanggan" class="form-control" readonly required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Jumlah Hutang</label>
+                        <select name="Jumlah_Hutang" class="form-select" id="jenisBarang" disabled>
+                            <option selected disabled>Pilih Jenis Barang</option>
+                            <?php foreach ($jenisBarang as $key => $value) {
+                            ?>
+                                <option value="<?= $value['id_JumlahHutang']; ?>"><?= $value['Jumlah_Hutang']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
