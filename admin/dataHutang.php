@@ -150,3 +150,21 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="">transaksi_jual</label>
+                        <select name="Kode_TransaksiJual" class="form-select" id="namaPelanggan" disabled>
+                            <option selected disabled>Pilih Kode Transaksi</option>
+                            <?php foreach ($transaksi_jual as $key => $value) {
+                            ?>
+                                <option value="<?= $value['id_Supplier']; ?>"><?= $value['Kode_TransaksiJual']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
