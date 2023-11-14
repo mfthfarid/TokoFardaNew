@@ -26,6 +26,8 @@ if (!isset($_SESSION["idUser"])) {
             Data Barang
         <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
             Data Jenis Barang
+        <?php elseif ($_GET['page'] == 'dataSupplier') : ?>
+            Data Supplier
         <?php endif; ?>
     </title>
 
@@ -83,6 +85,8 @@ if (!isset($_SESSION["idUser"])) {
                         include '../admin/dataBarang.php';
                     } elseif ($_GET['page'] == 'dataJenisbarang') {
                         include '../admin/dataJenisbarang.php';
+                    } elseif ($_GET['page'] == 'dataSupplier') {
+                        include '../admin/dataSupplier.php';
                     }
                     ?>
 
@@ -114,7 +118,7 @@ if (!isset($_SESSION["idUser"])) {
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
