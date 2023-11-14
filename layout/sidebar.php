@@ -26,7 +26,7 @@
         Menu
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Pages Collapse Menu -->  
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -37,9 +37,13 @@
                 <h6 class="collapse-header">Master Menu:</h6>
                 <a class="collapse-item" href="?page=dataUser">Data User</a>
                 <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
+                <a class="collapse-item" href="?page=dataJenisbarang">Data Jenis Barang</a>
             </div>
+                <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
+               </div>
         </div>
     </li>
+
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
@@ -53,7 +57,7 @@
                 <a class="collapse-item" href="utilities-color.html">Colors</a>
                 <a class="collapse-item" href="utilities-border.html">Borders</a>
                 <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <a class="collapse-item" href="utilities-other.html">Otherr</a>
             </div>
         </div>
     </li>
@@ -66,31 +70,34 @@
         Addons
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Transaksi Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
+            <span>Transaksi</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" >
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
+                <a class="collapse-item" href="#">Transaksi Beli</a>
+                <a class="collapse-item" href="#">Transaksi Jual</a>
             </div>
         </div>
     </li>
 
-    <!-- Nav Item - Charts -->
+
+    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="../admin/dataBarang.php">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksiMenu" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Transaksi</span>
+        </a>
+        <div id="transaksiMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Transaksi Menu:</h6>
+                <a class="collapse-item" href="?page=transaksiJual">Jual</a>
+                <a class="collapse-item" href="?page=transaksiBeli">Beli</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Tables -->

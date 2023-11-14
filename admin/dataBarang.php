@@ -5,8 +5,44 @@
 
     $crud = new crudBarang();
     $result = $crud->index();
+    $jenisBarang = $crud->jenisBarang();
+    $supplier = $crud->supplier();
 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') :
+        $action = $_POST['action'];
     
+        if ($action === 'add') {
+            $kodeBarang = htmlspecialchars($_POST['Kode_Barang']);
+            $namaBarang = htmlspecialchars($_POST['Nama_Barang']);
+            $tanggal = htmlspecialchars($_POST['Tgl_Expired']);
+            $hargaBeli = htmlspecialchars($_POST['Harga_Beli']);
+            $hargaBeli1 = str_replace(',', '', $hargaBeli);
+            $hargaJual = htmlspecialchars($_POST['Harga_Jual']);
+            $hargaJual1 = str_replace(',', '', $hargaJual);
+            $stok = htmlspecialchars($_POST['Stok']);
+            $jenisBarang = htmlspecialchars($_POST['id_JenisBarang']);
+            $supplier = htmlspecialchars($_POST['id_Supplier']);
+            // var_dump($kodeBarang, $namaBarang, $tanggal, $hargaBeli1, $hargaJual1, $stok, $jenisBarang, $supplier);
+            $crud->tambah($kodeBarang, $namaBarang, $tanggal, $hargaBeli1, $hargaJual1, $stok, $jenisBarang, $supplier);
+        } elseif ($action === 'edit') {
+            $kodeBarang = $_POST['Kode_Barang'];
+            $namaBarang = htmlspecialchars($_POST['Nama_Barang']);
+            $tanggal = htmlspecialchars($_POST['Tgl_Expired']);
+            $hargaBeli = htmlspecialchars($_POST['Harga_Beli']);
+            $hargaBeli1 = str_replace(',', '', $hargaBeli);
+            $hargaJual = htmlspecialchars($_POST['Harga_Jual']);
+            $hargaJual1 = str_replace(',', '', $hargaJual);
+            $stok = htmlspecialchars($_POST['Stok']);
+            $jenisBarang = htmlspecialchars($_POST['id_JenisBarang']);
+            $supplier = htmlspecialchars($_POST['id_Supplier']);
+            $crud->edit($kodeBarang, $namaBarang, $tanggal, $hargaBeli1, $hargaJual1, $stok, $jenisBarang, $supplier);
+        } elseif ($action === 'delete') {
+            if (isset($_POST['Kode_Barang'])) {
+                $kodeBarang = htmlspecialchars($_POST['Kode_Barang']);
+                $crud->hapus($kodeBarang);
+            }
+        }
+    endif;
 ?>
 
 <!-- DataTales Example -->
@@ -28,7 +64,6 @@
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Tanggal Expired</th>
-                        <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
@@ -39,7 +74,6 @@
                     <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Tanggal Expired</th>
-                        <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
@@ -51,24 +85,26 @@
                             <td><?= $data['Kode_Barang']; ?></td>
                             <td><?= $data['Nama_Barang']; ?></td>
                             <td><?= $data['Tgl_Expired']; ?></td>
-                            <td><?= $data['Harga_Beli']; ?></td>
                             <td><?= $data['Harga_Jual']; ?></td>
                             <td><?= $data['Stok']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
-                                    <span class="text">Detail</span>
-                                </button>
                                 <button type="button" class="btn btn-warning btn-icon-split" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
                                     <span class="icon text-white-50">
                                         <i class="fas fa-pen"></i>
-                                    </span>
-                                    <span class="text">Edit</span>
+                                    <!-- </span>
+                                    <span class="text">Edit</span> -->
                                 </button>
                                 <button type="button" class="btn btn-danger btn-icon-split" onclick="confirmDelete(<?= $data['Kode_Barang']; ?>)">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-trash"></i>
                                     </span>
                                     <span class="text">Hapus</span>
+                                </button>
+                                <button type="button" class="btn btn-info btn-icon-split" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span class="text">Detail</span>
                                 </button>
                             </td>
                         </tr>
@@ -124,61 +160,3 @@
         </div>
     </div>
 </div>
-
-<!-- DetailModal -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Barang</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="<?= $_SERVER['PHP_SELF']; ?>?page=dataUser" method="post" id="formEdit">
-                    <div class="mb-3">
-                        <label for="">Jenis Barang</label>
-                        <input name="JenisBarang" id="jenisbarangDetail" class="form-control" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="">Supplier</label>
-                        <input type="text" name="id_Supplier" id="id_supplierDetail" class="form-control" readonly>
-                    </div>
-
-                    <input type="hidden" name="Id_User" id="idEdit">
-                    <input type="hidden" name="action" value="edit">
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    function detail(data) {
-        console.log(data);
-        // document.getElementById('jenisbarangDetail').value = data.JenisBarang
-        // document.getElementById('id_supplierDetail').value = data.id_Supplier
-        <?php  
-        $id_barang = $_POST['id_barang']; // Gantilah sesuai dengan cara Anda mendapatkan ID barang
-
-        $sql = "SELECT barang.id_barang, barang.nama_barang, jenis_barang.nama_jenis FROM barangINNER JOIN jenis_barang ON barang.id_jenis_barang = jenis_barang.id_jenis_barang WHERE barang.id_barang = $id_barang";
-        $result = $koneksi->query($sql);
-
-        if ($result->num_rows > 0) {
-            // Ambil hasil query
-            $row = $result->fetch_assoc();
-
-            $nama_barang = $row['nama_barang'];
-            $nama_jenis = $row['nama_jenis'];
-
-            // Gunakan $nama_barang dan $nama_jenis sesuai kebutuhan Anda
-            // Misalnya, mengisi elemen-elemen HTML dengan data tersebut
-        } else {
-            echo "Barang tidak ditemukan.";
-        }
-        ?>
-    };
-</script>
