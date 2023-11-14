@@ -24,6 +24,8 @@ if (!isset($_SESSION["idUser"])) {
             Data User
         <?php elseif ($_GET['page'] == 'dataBarang') : ?>
             Data Barang
+        <?php elseif ($_GET['page'] == 'dataSupplier') : ?>
+            Data Supplier
         <?php endif; ?>
     </title>
 
@@ -81,11 +83,13 @@ if (!isset($_SESSION["idUser"])) {
                         include '../admin/dataBarang.php';
                     } elseif ($_GET['page'] == 'transaksiJual') {
                         include '../admin/transaksiJual.php';
-                    } elseif ($_GET['page'] == 'keranjang') {
-                        include '../admin/keranjang.php';
-                    } elseif ($_GET['page'] == 'transaksiBeli') {
-                        include '../admin/transaksiBeli.php';
-                    }
+                     } 
+                    //     include '../admin/keranjang.php';
+                    // } elseif ($_GET['page'] == 'transaksiBeli') {
+                    //     include '../admin/transaksiBeli.php';
+                    // } elseif ($_GET['page'] == 'dataSupplier') {
+                    //     include '../admin/dataSupplier.php';
+                    // }
                     ?>
 
                 </div>
