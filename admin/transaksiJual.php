@@ -1,11 +1,11 @@
-<?php 
-    require '../koneksi.php';
-    require '../controller/transaksiJual.php';
+<?php
+require '../koneksi.php';
+require '../controller/transaksiJual.php';
 
-    $transaksiJual = new transaksiJual();
-    $result = $transaksiJual->showBarang();
+$transaksiJual = new transaksiJual();
+$result = $transaksiJual->showBarang();
+
 ?>
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
