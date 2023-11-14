@@ -38,6 +38,7 @@
                 <a class="collapse-item" href="?page=dataUser">Data User</a>
                 <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
                 <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
+                <a class="collapse-item" href="?page=dataJenisbarang">Jenis Barang</a>
                </div>
         </div>
     </li>
