@@ -142,21 +142,19 @@
                     </div>
                     <div class="mb-3">
                         <label for="">Jumlah Hutang</label>
-                        <select name="Jumlah_Hutang" class="form-select" id="jenisBarang" disabled>
+                        <select name="Jumlah_Hutang" class="form-select" id="jumlahHutang" disabled>
                             <option selected disabled>Pilih Jenis Barang</option>
-                            <?php foreach ($jenisBarang as $key => $value) {
-                            ?>
+                            <?php foreach ($jumlah_hutang as $key => $value) { ?>
                                 <option value="<?= $value['id_JumlahHutang']; ?>"><?= $value['Jumlah_Hutang']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="">transaksi_jual</label>
-                        <select name="Kode_TransaksiJual" class="form-select" id="namaPelanggan" disabled>
+                        <label for="">Kode Transaksi Jual</label>
+                        <select name="Kode_TransaksiJual" class="form-select" id="kodeTransaksiJual" disabled>
                             <option selected disabled>Pilih Kode Transaksi</option>
-                            <?php foreach ($transaksi_jual as $key => $value) {
-                            ?>
-                                <option value="<?= $value['id_Supplier']; ?>"><?= $value['Kode_TransaksiJual']; ?></option>
+                            <?php foreach ($transaksi_jual as $key => $value) { ?>
+                                <option value="<?= $value['id_Hutang']; ?>"><?= $value['Kode_TransaksiJual']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -168,3 +166,38 @@
         </div>
     </div>
 </div>
+<script>
+    function edit(data) {
+        // console.log(data);
+        document.getElementById('usernameEdit').value = data.Username
+        document.getElementById('nameEdit').value = data.Nama_User
+        document.getElementById('emailEdit').value = data.Email
+        document.getElementById('levelEdit').value = data.Level
+        document.getElementById('idEdit').value = data.Id_User
+    };
+
+    function detail(data) {
+        document.getElementById('namaPelanggan').value = data.Nama_Pelanggan;
+        document.getElementById('jumlahHutang').value = data.id_jumlahHutang;
+        document.getElementById('kodeTransaksiJual').value = data.id_Kode_TransaksiJual;
+    };
+
+    function confirmDelete(userId) {
+        console.log(userId);
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Anda yakin ingin menghapus data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('idDelete').value = userId;
+                document.getElementById('formDelete').submit();
+            }
+        });
+    };
+</script>
