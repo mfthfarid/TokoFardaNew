@@ -24,6 +24,10 @@ if (!isset($_SESSION["idUser"])) {
             Data User
         <?php elseif ($_GET['page'] == 'dataBarang') : ?>
             Data Barang
+        <?php elseif ($_GET['page'] == 'dataSupplier') : ?>
+            Data Supplier
+        <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
+            Data Jenis Barang
         <?php endif; ?>
     </title>
 
@@ -79,6 +83,16 @@ if (!isset($_SESSION["idUser"])) {
                         include '../admin/dataUser.php';
                     } elseif ($_GET['page'] == 'dataBarang') {
                         include '../admin/dataBarang.php';
+                    } elseif ($_GET['page'] == 'transaksiJual') {
+                        include '../admin/transaksiJual.php';
+                    } elseif ($_GET['page'] == 'keranjang') {
+                        include '../admin/keranjang.php';
+                    } elseif ($_GET['page'] == 'transaksiBeli') {
+                        include '../admin/transaksiBeli.php';
+                    } elseif ($_GET['page'] == 'dataJenisbarang') {
+                        include '../admin/dataJenisbarang.php';
+                    } elseif ($_GET['page'] == 'dataSupplier') {
+                        include '../admin/dataSupplier.php';
                     }
                     ?>
 
@@ -158,8 +172,6 @@ if (!isset($_SESSION["idUser"])) {
             });
         <?php unset($_SESSION['statusLogin']);
         endif; ?>
-
-        
         <?php if (isset($_SESSION['success'])) : ?>
             Swal.fire({
                 position: 'center',
