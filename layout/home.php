@@ -81,9 +81,15 @@ if (!isset($_SESSION["idUser"])) {
                         include '../admin/dataUser.php';
                     } elseif ($_GET['page'] == 'dataBarang') {
                         include '../admin/dataBarang.php';
-                    } elseif ($_GET['page'] == 'dataSupplier') {
-                        include '../admin/dataSupplier.php';
-                    }
+                    } elseif ($_GET['page'] == 'transaksiJual') {
+                        include '../admin/transaksiJual.php';
+                     } 
+                    //     include '../admin/keranjang.php';
+                    // } elseif ($_GET['page'] == 'transaksiBeli') {
+                    //     include '../admin/transaksiBeli.php';
+                    // } elseif ($_GET['page'] == 'dataSupplier') {
+                    //     include '../admin/dataSupplier.php';
+                    // }
                     ?>
 
                 </div>
