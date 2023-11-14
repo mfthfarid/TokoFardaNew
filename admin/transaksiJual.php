@@ -1,9 +1,9 @@
 <?php 
     require '../koneksi.php';
-    require '../controller/transaksiJual.php';
+    require '../controller/jualController.php';
 
-    $transaksiJual = new transaksiJual();
-    $result = $transaksiJual->showBarang();
+    $jualController = new transaksiJual();
+    $result = $jualController->showBarang();
 ?>
 
 <!-- DataTales Example -->
