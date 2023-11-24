@@ -81,18 +81,24 @@ if (!isset($_SESSION["idUser"])) {
                         }
                     } elseif ($_GET['page'] == 'dataUser') {
                         include '../admin/dataUser.php';
+                    } elseif ($_GET['page'] == 'dataJenisbarang') {
+                        include '../admin/dataJenisbarang.php';
                     } elseif ($_GET['page'] == 'dataBarang') {
                         include '../admin/dataBarang.php';
+                    } elseif ($_GET['page'] == 'dataSupplier') {
+                        include '../admin/dataSupplier.php';
+                    } elseif ($_GET['page'] == 'dataHutang') {
+                        include '../admin/dataHutang.php';
                     } elseif ($_GET['page'] == 'transaksiJual') {
                         include '../admin/transaksiJual.php';
                     } elseif ($_GET['page'] == 'keranjang') {
                         include '../admin/keranjang.php';
                     } elseif ($_GET['page'] == 'transaksiBeli') {
                         include '../admin/transaksiBeli.php';
-                    } elseif ($_GET['page'] == 'dataJenisbarang') {
-                        include '../admin/dataJenisbarang.php';
-                    } elseif ($_GET['page'] == 'dataSupplier') {
-                        include '../admin/dataSupplier.php';
+                    } elseif ($_GET['page'] == 'laporanPemasukan') {
+                        include '../admin/laporanPemasukan.php';
+                    } elseif ($_GET['page'] == 'laporanPengeluaran') {
+                        include '../admin/laporanPengeluaran.php';
                     }
                     ?>
 
