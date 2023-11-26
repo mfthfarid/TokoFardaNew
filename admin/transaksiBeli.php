@@ -1,9 +1,10 @@
 <?php
 require '../koneksi.php';
-require '../controller/transaksiJual.php';
+require '../controller/transaksiBeli.php';
+// session_start();
 
-$transaksiJual = new transaksiJual();
-$result = $transaksiJual->showBarang();
+$transaksiBeli = new transaksiBeli();
+$result = $transaksiBeli->showBarang();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bayar = $_POST['bayar1'];
@@ -13,23 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $jumlah = $_POST['jumlah'];
     $subtotal = $_POST['subtotal'];
     $totalBarang = $_POST['jumlahBarang'];
-    $status = $_POST['status'];
-    $namaPelanggan = $_POST['Nama_Pelanggan'];
-    $noTelp = $_POST['No_Telp'];
-    $alamat = $_POST['Alamat'];
-    $jumlahHutang = $_POST['Jumlah_Hutang'];
 
 
-    // var_dump($namaPelanggan, $noTelp, $alamat, $jumlahHutang);
-    // var_dump($bayar, $total, $idUser, $kodeBarang, $jumlah, $subtotal, $totalBarang, $status);
-    $transaksiJual->tambah($bayar, $total, $idUser, $kodeBarang, $jumlah, $subtotal, $totalBarang, $status, $namaPelanggan, $noTelp, $alamat, $jumlahHutang);
+    // var_dump($bayar, $total, $idUser, $kodeBarang, $jumlah, $subtotal, $totalBarang);
+    $transaksiBeli->tambah($bayar, $total, $idUser, $kodeBarang, $jumlah, $subtotal, $totalBarang);
 }
 
 ?>
+
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary" data-bs-toggle="modal" data-bs-target="#tambahModal">Data Barang</h6>
+        <h6 class="m-0 font-weight-bold text-primary" data-bs-toggle="modal" data-bs-target="#tambahModal">Data Barang Beli</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -66,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <td><?= $data['Kode_Barang'] ?></td>
                             <td><?= $data['Nama_Barang']; ?></td>
                             <td><?= $data['Tgl_Expired']; ?></td>
-                            <td>Rp. <?= number_format($data['Harga_Jual']); ?></td>
+                            <td>Rp. <?= number_format($data['Harga_Beli']); ?></td>
                             <td><?= $data['Stok']; ?></td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
@@ -86,11 +82,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="judul">Detail Belanja</h1>
-                <button type="button" class="btn-close" id="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Belanja</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="card" id="dataBarang">
+                <div class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-sm-6">
@@ -123,55 +119,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="row mt-3">
                     <form id="myForm" method="POST">
-                        <div id="dataTransaksi">
-                            <div id="formBelanja" style="display: none;">
+                        <div id="formBelanja" style="display: none;">
 
-                            </div>
-                            <div class="col-md-12">
-                                <label for="">Bayar</label>
-                                <input type="text" class="form-control" id="bayar" oninput="if (this.value !== '') funcBayar(); validateInput(this)">
-                            </div>
-                            <div class="col-md-12 mt-3">
-                                <label for="">Kembalian</label>
-                                <input type="text" id="kembalian" class="form-control" readonly>
-                            </div>
-                            <div class="col-md-12 mt-3 mb-3">
-                                <label for="">Status</label>
-                                <input type="text" id="status" name="status" class="form-control" readonly>
-                            </div>
-
-                            <input type="hidden" id="idUser" name="idUser" value="<?= $_SESSION['idUser']; ?>">
-                            <input type="hidden" id="bayar1" name="bayar1">
-                            <input type="hidden" id="jumlahBarang" name="jumlahBarang">
-                            <input type="hidden" id="total2" name="total">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="">Bayar</label>
+                            <input type="text" class="form-control" id="bayar" oninput="funcBayar(); validateInput(this)">
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label for="">Kembalian</label>
+                            <input type="text" id="kembalian" class="form-control" readonly>
                         </div>
 
-                        <div class="" id="dataHutang" style="display: none;">
-                            <div class="mb-3">
-                                <label for="">Nama Pelanggan</label>
-                                <input type="text" name="Nama_Pelanggan" id="namaPelanggan" class="form-control" required>
-                            </div>
-                            <div class=" mb-3">
-                                <label for="">No Telp</label>
-                                <input type="text" name="No_Telp" id="noTelp" class="form-control" pattern="(\+62|62|0)8[1-9][0-9]{8,9}$" oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateTelp(this);" oninvalid="validateTelp(this);" required>
-                            </div>
-                            <div class=" mb-3">
-                                <label for="">Alamat</label>
-                                <textarea name="Alamat" id="alamat" cols="30" rows="5" class="form-control"></textarea>
-                            </div>
-                            <div class="" id="">
-                                <label for="">Jumlah Hutang</label>
-                                <input type="text" id="jumlahHutang" class="form-control" required readonly>
-                                <input type="hidden" name="Jumlah_Hutang" id="jumlahHutang1">
-                            </div>
-                        </div>
+                        <input type="hidden" id="idUser" name="idUser" value="<?= $_SESSION['idUser']; ?>">
+                        <input type="hidden" id="bayar1" name="bayar1">
+                        <input type="hidden" id="total2" name="total">
+                        <input type="hidden" id="jumlahBarang" name="jumlahBarang">
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" onclick="submitForm()" id="simpan" disabled>Simpan</button>
-                <button type="button" id="buttonHutang" class="btn btn-warning" onclick="simpanHutang()" style="display: none;">Simpan
-                </button>
+                <button class="btn btn-primary" onclick="submitForm()" id="simpan">Simpan</button>
             </div>
         </div>
     </div>
@@ -186,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" method="post">
                     <div class="mb-3">
                         <label for="">Nama Barang</label>
                         <input type="text" name="Nama_Barang" id="namaBarang" class="form-control" readonly required>
@@ -197,21 +165,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="mb-3">
                         <label for="">Jumlah</label>
-                        <input type="text" name="Jumlah" id="jumlah" class="form-control" required oninput="if (this.value !== '') hitungSubtotal(); validateInput(this)">
+                        <input type="text" name="Jumlah" id="jumlah" class="form-control" required oninput="hitungSubtotal();">
                     </div>
                     <div class="">
                         <label for="">Subtotal</label>
                         <input type="text" name="Subtotal" id="subtotal" class="form-control" required readonly>
                     </div>
 
-                    <input type="hidden" name="Kode_Barang" id="kodeBarang" required>
-                    <input type="hidden" name="Stok" id="stok" required>
-                    <input type="hidden" id="hargaJual" required>
-                    <input type="hidden" id="subtotal1" required>
+                    <input type="hidden" name="Kode_Barang" id="kodeBarang">
+                    <input type="hidden" name="Stok" id="stok">
+                    <input type="hidden" id="hargaBeli">
+                    <input type="hidden" id="subtotal1">
 
                     <div class="modal-footer">
                         <button type="button" id="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" id="tambah" disabled="true" class="btn btn-primary" onclick="tambahBarang()">Tambah Keranjang</button>
+                        <button type="button" id="tambah" onclick="tambahKeranjang()" class="btn btn-primary">Tambah Keranjang</button>
                     </div>
                 </form>
             </div>
@@ -220,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 <script>
-    var keranjangBelanja = {}
+    var keranjangBelanja = {};
     const buttonKeranjang = document.getElementById('buttonKeranjang');
     const keranjangKeys = Object.keys(keranjangBelanja);
 
@@ -229,111 +197,78 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     function detail(data) {
-        // console.log(data);
-        var hargaJual = parseInt(data.Harga_Jual)
-        var format = hargaJual.toLocaleString('id-ID', {
+        const hargaBeli = parseInt(document.getElementById('hargaBeli').value = data.Harga_Beli)
+        var format = hargaBeli.toLocaleString('id-ID', {
             style: 'currency',
             currency: 'IDR'
         });
 
-        var button = document.getElementById('tambah');
+        const harga = document.getElementById('harga').value = format
+        const namaBarang = document.getElementById('namaBarang').value = data.Nama_Barang
+        const kodeBarang = document.getElementById('kodeBarang').value = data.Kode_Barang
+
+        const button = document.getElementById('tambah');
         button.disabled = true;
-
-        document.getElementById('harga').value = format
-
-        document.getElementById('namaBarang').value = data.Nama_Barang
-        document.getElementById('kodeBarang').value = data.Kode_Barang
-        document.getElementById('stok').value = data.Stok
-        document.getElementById('hargaJual').value = data.Harga_Jual
-    };
+    }
 
     function hitungSubtotal() {
-        var stok = parseInt(document.getElementById('stok').value);
-        var jumlah = document.getElementById('jumlah');
-        var harga = document.getElementById('hargaJual');
+        const hargaBeli = document.getElementById('hargaBeli').value
+        const jumlah = document.getElementById('jumlah').value
+        // console.log(hargaBeli, jumlah);
 
-        var harga1 = parseInt(harga.value);
-        var jumlah1 = parseInt(jumlah.value);
-
-        var hasil = harga1 * jumlah1
-
+        const hasil = jumlah * hargaBeli
         var format = hasil.toLocaleString('id-ID', {
             style: 'currency',
             currency: 'IDR'
         });
+        const subtotal = document.getElementById('subtotal').value = format;
+        const subtotal1 = document.getElementById('subtotal1').value = hasil;
+        const button = document.getElementById('tambah')
 
-        if (isNaN(hasil) && isNaN(jumlah1)) {
-            var button = document.getElementById('tambah');
+        if (isNaN(hasil) && isNaN(jumlah)) {
             button.disabled = true;
         } else {
-            if (jumlah1 > stok) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'Stok tidak mencukupi',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                document.getElementById('subtotal').value = "";
-                var button = document.getElementById('tambah');
-                button.disabled = true;
-            } else {
-                document.getElementById('subtotal').value = format;
-                document.getElementById('subtotal1').value = hasil;
-                var button = document.getElementById('tambah');
-                button.disabled = false;
-            }
+            button.disabled = false;
         }
+
     }
 
-    function tambahBarang() {
-        var namaBarang = document.getElementById('namaBarang').value;
-        var harga = document.getElementById('harga').value;
-        var jumlah = parseInt(document.getElementById('jumlah').value);
-        var subtotal = document.getElementById('subtotal').value;
-        var subtotal1 = parseInt(document.getElementById('subtotal1').value);
-        var kodeBarang = document.getElementById('kodeBarang').value;
+    function tambahKeranjang() {
+        // console.log("oke");
+        const kodeBarang = document.getElementById('kodeBarang').value
+        const namaBarang = document.getElementById('namaBarang').value
+        const jumlah = parseInt(document.getElementById('jumlah').value)
+        const subtotal1 = parseInt(document.getElementById('subtotal1').value)
 
-        if (isNaN(jumlah)) {
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: 'Harap isi jumlah dengan benar',
-                showConfirmButton: false,
-                timer: 2000
-            });
+        if (keranjangBelanja[kodeBarang]) {
+            keranjangBelanja[kodeBarang].jumlah += jumlah;
+            keranjangBelanja[kodeBarang].subtotal += subtotal1;
         } else {
-            // console.log(jumlah, subtotal1);
-            if (keranjangBelanja[kodeBarang]) {
-                keranjangBelanja[kodeBarang].jumlah += jumlah;
-                keranjangBelanja[kodeBarang].subtotal += subtotal1;
-            } else {
-                keranjangBelanja[kodeBarang] = {
-                    namaBarang: namaBarang,
-                    jumlah: jumlah,
-                    subtotal: subtotal1,
-                }
+            keranjangBelanja[kodeBarang] = {
+                namaBarang: namaBarang,
+                jumlah: jumlah,
+                subtotal: subtotal1,
             }
-
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Data berhasil ditambahkan',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            document.getElementById('jumlah').value = "";
-            document.getElementById('subtotal').value = "";
-            document.getElementById('tutup').click();
-            buttonKeranjang.disabled = false;
-
-            perbaruiTampilanKeranjang();
         }
+
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Data berhasil ditambahkan',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        document.getElementById('jumlah').value = "";
+        document.getElementById('subtotal').value = "";
+        document.getElementById('tutup').click();
+        buttonKeranjang.disabled = false;
+
+        perbaruiTampilanKeranjang();
     }
 
     function perbaruiTampilanKeranjang() {
-        // console.log('oke');
-        const keranjangElement = document.getElementById('detailBelanja');
+        const keranjangElement = document.getElementById("detailBelanja");
         const formBelanja = document.getElementById('formBelanja');
         const count = document.getElementById('count');
         const jumlahBarang = document.getElementById('jumlahBarang');
@@ -344,6 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         count.textContent = totalBarang;
         jumlahBarang.value = totalBarang
 
+        // Loop melalui item di keranjang dan tampilkan
         for (const kodeBarang in keranjangBelanja) {
             const {
                 namaBarang,
@@ -410,45 +346,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 currency: 'IDR'
             });
 
-
             totalBelanja.textContent = format1
             totalBelanja1.value = total
             totalBelanja2.value = total
+            // console.log(keranjangBelanja);
+            // console.log(`${kodeBarang}`);
         }
-        // console.log(format1);
     }
 
     function funcBayar() {
-        const buttonSimpan = document.getElementById('simpan');
         const totalBelanja = parseInt(document.getElementById('total1').value)
         const bayar = document.getElementById('bayar').value
         const bayar1 = document.getElementById('bayar1')
         const uang = parseInt(bayar.replace(/,/g, ''), 10);
-        const kembalian = document.getElementById('kembalian')
-        const status = document.getElementById('status')
-        const jumlahHutang = document.getElementById('jumlahHutang')
-        const jumlahHutang1 = document.getElementById('jumlahHutang1')
+        const kembalian = document.getElementById('kembalian');
+        const buttonSimpan = document.getElementById('simpan');
 
         const sisa = uang - totalBelanja;
-        const sisa1 = totalBelanja - uang;
-
         var format = sisa.toLocaleString('id-ID', {
-            style: 'currency',
-            currency: 'IDR'
-        });
-
-        var format1 = sisa1.toLocaleString('id-ID', {
             style: 'currency',
             currency: 'IDR'
         });
 
         if (uang < totalBelanja) {
             kembalian.value = "Rp." + 0;
-            status.value = 'hutang';
-            jumlahHutang.value = format1;
-            jumlahHutang1.value = sisa1;
-            bayar1.value = bayar;
-            buttonSimpan.disabled = false;
         } else {
             // if (isNaN(sisa) || isNaN(format)) {
             //     kembalian.value = "Rp. 0";
@@ -457,45 +378,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //     kembalian.value = format;
             // }
             kembalian.value = format;
-            status.value = 'lunas';
+            bayar1.value = uang;
             buttonSimpan.disabled = false;
         }
-        // console.log(bayar1.value = bayar);
-    }
-
-    function submitForm() {
-        const form = document.getElementById("myForm");
-        const status = document.getElementById('status').value
-        const dataHutang = document.getElementById('dataHutang');
-        const dataTransaksi = document.getElementById('dataTransaksi');
-        const dataBarang = document.getElementById('dataBarang');
-        const judul = document.getElementById('judul');
-        const buttonSimpan = document.getElementById('simpan');
-        const buttonHutang = document.getElementById('buttonHutang');
-
-        if (status == 'hutang') {
-            judul.innerHTML = '';
-            dataHutang.style.display = 'block';
-            dataTransaksi.style.display = 'none';
-            dataBarang.style.display = 'none';
-            judul.innerHTML = 'Form Hutang';
-            buttonSimpan.style.display = 'none';
-            buttonHutang.style.display = 'block';
-        } else {
-            form.action = "<?= $_SERVER['PHP_SELF']; ?>?page=transaksiJual";
-            form.method = "POST"
-            form.submit();
-        }
-    }
-
-    function simpanHutang() {
-        // console.log('Oke');
-        const formTransaksi = document.getElementById('myForm');
-
-        formTransaksi.action = "<?= $_SERVER['PHP_SELF']; ?>?page=transaksiJual";
-        formTransaksi.method = "POST";
-        formTransaksi.submit();
-
+        // console.log(totalBelanja, bayar1, format);
     }
 
     function validateInput(input) {
@@ -509,22 +395,96 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         input.value = value;
     }
 
-    function validateTelp(input) {
-        console.log("oke");
-    }
+    function submitForm() {
+        const form = document.getElementById("myForm");
+        const bayar = parseInt(document.getElementById('bayar1').value)
+        const total = parseInt(document.getElementById('total1').value)
+        const idUser = parseInt(document.getElementById('idUser').value);
 
-    function rupiah($angka) {
-        $hasil_rupiah = "Rp. ".number_format($angka, 0, ',', '.');
-        return $hasil_rupiah;
+        form.action = "<?= $_SERVER['PHP_SELF']; ?>?page=transaksiBeli";
+        form.method = "POST"
+        form.submit();
+        console.log(bayar, total, idUser);
     }
 
     function reSet() {
-        const bayar = document.getElementById('bayar');
         const kembalian = document.getElementById('kembalian');
-        const status = document.getElementById('status');
+        const buttonSimpan = document.getElementById('simpan');
 
-        bayar.value = "";
+        buttonSimpan.disabled = true;
         kembalian.value = "";
-        status.value = "";
     }
 </script>
+
+<!-- localstorage -->
+<!-- <script>
+    if (localStorage.getItem('data') == null) {
+        localStorage.setItem('data', '[]');
+    }
+
+    function simpan() {
+        const jumlah = document.getElementById('jumlah')
+        let penyimpanan = JSON.parse(localStorage.getItem('data'));
+
+        penyimpanan.push(` ${jumlah.value}`);
+        localStorage.setItem('data', JSON.stringify(penyimpanan));
+
+        document.getElementById('subtotal').value = JSON.parse(localStorage.getItem('data'))
+    }
+</script> -->
+
+<!-- <h1>Keranjang Belanja</h1>
+
+<div>
+    <label for="item">Pilih Item:</label>
+    <select id="item">
+        <option value="kopi">Kopi</option>
+        <option value="tehManis">Teh Manis</option>
+    </select>
+
+    <label for="jumlah">Jumlah:</label>
+    <input type="number" id="jumlah1" min="1" value="1">
+
+    <button onclick="tambahKeKeranjang()">Tambah ke Keranjang</button>
+</div>
+
+<div>
+    <h2>Keranjang Belanja</h2>
+    <ul id="keranjang"></ul>
+</div>
+
+<script>
+    // Objek untuk menyimpan keranjang belanja
+    var keranjangBelanja = {};
+
+    function tambahKeKeranjang() {
+        var item = document.getElementById("item").value;
+        var jumlah = parseInt(document.getElementById("jumlah1").value);
+
+        // Periksa apakah item sudah ada di keranjang
+        if (keranjangBelanja[item]) {
+            // Jika sudah ada, tambahkan jumlahnya
+            keranjangBelanja[item] += jumlah;
+        } else {
+            // Jika belum, tambahkan item baru
+            keranjangBelanja[item] = jumlah;
+        }
+
+        // Perbarui tampilan keranjang belanja
+        perbaruiTampilanKeranjang();
+        console.log(jumlah);
+    }
+
+    function perbaruiTampilanKeranjang() {
+        var keranjangElement = document.getElementById("keranjang");
+        keranjangElement.innerHTML = "";
+
+        // Loop melalui item di keranjang dan tampilkan
+        for (var item in keranjangBelanja) {
+            var jumlah = keranjangBelanja[item];
+            var li = document.createElement("li");
+            li.textContent = item + ": " + jumlah;
+            keranjangElement.appendChild(li);
+        }
+    }
+</script> -->
