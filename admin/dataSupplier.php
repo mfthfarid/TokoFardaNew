@@ -68,17 +68,17 @@ endif;
                             <td><?= $data['No_Telp']; ?></td>
                             <td><?= $data['Alamat']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-icon-split" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
-                                    <span class="icon text-white-50">
+                                <button type="button" class="btn btn-warning btn-circle" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
+                                    <!--<span class="icon text-white-50"> -->
                                         <i class="fas fa-pen"></i>
-                                    </span>
-                                    <span class="text" >Edit</span>
+                                    <!-- </span> -->
+                                    <!-- <span class="text" >Edit</span> -->
                                 </button>
-                                <button type="button" class="btn btn-danger btn-icon-split" <?php echo "onclick='confirmDelete($data[id_Supplier])'" ?>>
-                                    <span class="icon text-white-50">
+                                <button type="button" class="btn btn-danger btn-circle" <?php echo "onclick='confirmDelete($data[id_Supplier])'" ?>>
+                                    <!-- <span class="icon text-white-50"> -->
                                         <i class="fas fa-trash"></i>
-                                    </span>
-                                    <span class="text">Hapus</span>
+                                    <!-- </span> -->
+                                    <!-- <span class="text">Hapus</span> -->
                                 </button>
                             </td>
                             <script>
