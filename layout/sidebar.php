@@ -36,54 +36,13 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Master Menu:</h6>
                 <a class="collapse-item" href="?page=dataUser">Data User</a>
+                <a class="collapse-item" href="?page=dataJenisbarang">Jenis Barang</a>
                 <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
-                <a class="collapse-item" href="?page=dataJenisbarang">Data Jenis Barang</a>
-            </div>
                 <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
+                <a class="collapse-item" href="?page=dataHutang">Data Hutang</a>
                </div>
         </div>
     </li>
-
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Otherr</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Addons
-    </div>
-
-    <!-- Nav Item - Transaksi Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Transaksi</span>
-        </a>
-        <div id="collapsePages" class="collapse" >
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Transaksi Beli</a>
-                <a class="collapse-item" href="#">Transaksi Jual</a>
-            </div>
-        </div>
-    </li>
-
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -100,12 +59,26 @@
         </div>
     </li>
 
-    <!-- Nav Item - Tables -->
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#laporanMenu" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-book"></i>
+            <span>Laporan</span>
+        </a>
+        <div id="laporanMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Laporan Menu:</h6>
+                <a class="collapse-item" href="?page=laporanPemasukan">Pemasukan</a>
+                <a class="collapse-item" href="?page=laporanPengeluaran">Pengeluaran</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <!-- <li class="nav-item">
         <a class="nav-link" href="tables.html">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

@@ -24,10 +24,10 @@ if (!isset($_SESSION["idUser"])) {
             Data User
         <?php elseif ($_GET['page'] == 'dataBarang') : ?>
             Data Barang
-        <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
-            Data Jenis Barang
         <?php elseif ($_GET['page'] == 'dataSupplier') : ?>
             Data Supplier
+        <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
+            Data Jenis Barang
         <?php endif; ?>
     </title>
 
@@ -85,21 +85,23 @@ if (!isset($_SESSION["idUser"])) {
                         include '../admin/dataBarang.php';
                     } elseif ($_GET['page'] == 'dataJenisbarang') {
                         include '../admin/dataJenisbarang.php';
+                    } elseif ($_GET['page'] == 'dataBarang') {
+                        include '../admin/dataBarang.php';
                     } elseif ($_GET['page'] == 'dataSupplier') {
                         include '../admin/dataSupplier.php';
+                    } elseif ($_GET['page'] == 'dataHutang') {
+                        include '../admin/dataHutang.php';
                     } elseif ($_GET['page'] == 'transaksiJual') {
                         include '../admin/transaksiJual.php';
                     } elseif ($_GET['page'] == 'keranjang') {
                         include '../admin/keranjang.php';
                     } elseif ($_GET['page'] == 'transaksiBeli') {
                         include '../admin/transaksiBeli.php';
-                    } 
-                    //     include '../admin/keranjang.php';
-                    // } elseif ($_GET['page'] == 'transaksiBeli') {
-                    //     include '../admin/transaksiBeli.php';
-                    // } elseif ($_GET['page'] == 'dataSupplier') {
-                    //     include '../admin/dataSupplier.php';
-                    // }
+                    } elseif ($_GET['page'] == 'laporanPemasukan') {
+                        include '../admin/laporanPemasukan.php';
+                    } elseif ($_GET['page'] == 'laporanPengeluaran') {
+                        include '../admin/laporanPengeluaran.php';
+                    }
                     ?>
 
                 </div>
@@ -130,7 +132,7 @@ if (!isset($_SESSION["idUser"])) {
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -178,8 +180,6 @@ if (!isset($_SESSION["idUser"])) {
             });
         <?php unset($_SESSION['statusLogin']);
         endif; ?>
-
-        
         <?php if (isset($_SESSION['success'])) : ?>
             Swal.fire({
                 position: 'center',
