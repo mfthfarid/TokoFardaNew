@@ -3,7 +3,7 @@ require '../koneksi.php';
 require '../controller/userController.php';
 
 $crud = new crudUser();
-$result = 
+$result = $crud->index();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') :
     $action = $_POST['action'];

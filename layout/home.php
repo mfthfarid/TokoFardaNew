@@ -81,6 +81,8 @@ if (!isset($_SESSION["idUser"])) {
                         }
                     } elseif ($_GET['page'] == 'dataUser') {
                         include '../admin/dataUser.php';
+                    } elseif ($_GET['page'] == 'dataBarang') {
+                        include '../admin/dataBarang.php';
                     } elseif ($_GET['page'] == 'dataJenisbarang') {
                         include '../admin/dataJenisbarang.php';
                     } elseif ($_GET['page'] == 'dataBarang') {
