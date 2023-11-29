@@ -88,22 +88,22 @@
             <div class="modal-body">
                 <form action="" method="post">
                     <div class="mb-3">
-                        <label for="">Nama Pelanggan</label>
-                        <input type="text" name="Nama_Pelanggan" id="namaPelanggan" class="form-control" readonly required>
+                        <label for="">Jumlah Hutang</label>
+                        <input type="text" name="Jumlah_Hutang" id="jumlahHutang" class="form-control" readonly required>
                     </div>
                     <div class="mb-3">
-                        <label for="">Jumlah Hutang</label>
-                        <select name="Jumlah_Hutang" class="form-select" id="jenisBarang" disabled>
+                        <label for="">Jenis Barang</label>
+                        <select name="Jenis_Barang" class="form-select" id="jenisBarang" disabled>
                             <option selected disabled>Pilih Jenis Barang</option>
                             <?php foreach ($jenisBarang as $key => $value) {
                             ?>
-                                <option value="<?= $value['id_JumlahHutang']; ?>"><?= $value['Ju']; ?></option>
+                                <option value="<?= $value['id_Jenis_Barang']; ?>"><?= $value['Ju']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="">transaksi_jual</label>
-                        <select name="Kode_TransaksiJual" class="form-select" id="namaPelanggan" disabled>
+                        <label for="">Supplier</label>
+                        <select name="Supplier" class="form-select" id="namaSupplier" disabled>
                             <option selected disabled>Pilih Supplier</option>
                             <?php foreach ($supplier as $key => $value) {
                             ?>
