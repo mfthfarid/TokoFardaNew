@@ -1,47 +1,74 @@
 <?php
-class editHutang extends koneksi {
+class hutang extends koneksi {
     public function index() {
         $query = "SELECT * FROM hutang";
         return $this->showData($query);
     }
-    public static function editHutang($id_hutang, $koneksi) {
-        // Query untuk mengambil data hutang berdasarkan ID
-        $query = "SELECT * FROM hutang WHERE id_hutang = $id_hutang";
-        $result = $koneksi->query($query);
+    public function transaksiJual() {
+        $query = "SELECT * FROM transaksi_jual";
+        return $this->showData($query);
+    }
+    public function editData($idHutang, $noTelp, $alamat) {
+        $query = "UPDATE hutang SET No_Telp='$noTelp', Alamat='$alamat' WHERE id_Hutang='$idHutang'";
+        $result = $this->execute($query);
 
-        if ($result) {
-            // Memeriksa apakah data hutang ditemukan
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-
-                // Memeriksa apakah hutang belum lunas
-                if ($row['status'] == 'Belum Lunas') {
-                    // Melakukan pembayaran
-                    $queryUpdate = "UPDATE hutang SET status = 'Lunas' WHERE id_hutang = $id_hutang";
-                    $resultUpdate = $koneksi->query($queryUpdate);
-
-                    if ($resultUpdate) {
-                        // Pembayaran berhasil, data dihapus
-                        $queryDelete = "DELETE FROM hutang WHERE id_hutang = $id_hutang";
-                        $resultDelete = $koneksi->query($queryDelete);
-
-                        if ($resultDelete) {
-                            return "Pembayaran berhasil, data hutang dihapus.";
-                        } else {
-                            return "Pembayaran berhasil, tetapi gagal menghapus data hutang.";
-                        }
-                    } else {
-                        return "Gagal melakukan pembayaran hutang.";
-                    }
-                } else {
-                    return "Hutang sudah lunas.";
-                }
-            } else {
-                return "Data hutang tidak ditemukan.";
-            }
+        if ($result == true) {
+            $_SESSION['success'] = "Data pelanggan berhasil diperbarui!";
         } else {
-            return "Error: " . $koneksi->error;
-     }
-  }
+            $_SESSION['error'] = "Gagal memperbarui data pelanggan!";
+        }
+        echo '<script>window.location.href="?page=dataHutang";</script>';
+        exit();
+    }
+
+    public function editBayar($sisa, $idHutang) {
+        try {
+            $query = "UPDATE hutang SET Jumlah_Hutang='$sisa' WHERE id_Hutang = '$idHutang'";
+            $result = $this->execute($query);
+
+            if ($result == true) {
+                $_SESSION['success'] = "Berhasil membayar hutang!";
+            } else {
+                $_SESSION['error'] = "Gagal membayar hutang!";
+            }
+            echo '<script>window.location.href="?page=dataHutang";</script>';
+            exit();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function hapus($status, $kodeTransaksi, $idHutang) {
+        try {
+            $query = "UPDATE transaksi_jual SET Status_Pembayaran = '$status' WHERE Kode_TransaksiJual = '$kodeTransaksi'";
+            $result = $this->execute($query);
+
+            $query1 = "DELETE FROM hutang WHERE id_Hutang = '$idHutang'";
+            $result1 = $this->execute($query1);
+
+            if ($result == true && $result1 == true) {
+                $_SESSION['success'] = "Data berhasil disimpan!";
+            } else {
+                $_SESSION['error'] = "Gagal menyimpan data.";
+            }
+            echo '<script>window.location.href="?page=dataHutang";</script>';
+            exit();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    // function updateDataInDatabase($idHutang, $sisaHutang) {
+    //     $sisaHutang = $_POST['$sisaHutang'];
+    
+    //     $idHutang = $_POST['idEdit'];
+    //     $query = "UPDATE hutang SET Jumlah_Hutang = '$sisaHutang' WHERE id_Hutang = '$idHutang'";
+    //     $result = $this->execute($query);
+
+    //     if ($result == true) {
+    //         $_SESSION['success'] = "Data pelanggan berhasil diperbarui!!";
+    //     } else {
+    //         $_SESSION['error'] = "Gagal memperbarui data pelanggan.";
+    //     }
+    // }
 }
 ?>
