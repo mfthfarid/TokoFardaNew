@@ -92,7 +92,7 @@
                                 </button> -->
                                 <button type="button" class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#bayarModal" onclick='bayar(<?= json_encode($data); ?>)'>
                                     <span class="icon text-white-50">
-                                        <i class="fas fa-money-bill-wave fa-spin"></i>
+                                        <i class="fas fa-hand-holding-usd fa-lg"></i>
                                     </span>
                                     <span class="text">Bayar</span>
                                 </button>

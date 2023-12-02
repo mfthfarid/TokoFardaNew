@@ -16,18 +16,30 @@ if (!isset($_SESSION["idUser"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="<?= 'http://localhost/SI/tokoFarda/' ?>/img/gambar/shopp.png">
+    <!-- <link rel="stylesheet" href="../img/gambar/shopping-mall.png"> -->
 
     <title>
         <?php if (empty($_GET['page'])) : ?>
             Dashboard
         <?php elseif ($_GET['page'] == 'dataUser') : ?>
             Data User
+        <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
+            Data Jenis Barang
         <?php elseif ($_GET['page'] == 'dataBarang') : ?>
             Data Barang
         <?php elseif ($_GET['page'] == 'dataSupplier') : ?>
             Data Supplier
-        <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
-            Data Jenis Barang
+        <?php elseif ($_GET['page'] == 'dataHutang') : ?>
+            Data Hutang
+        <?php elseif ($_GET['page'] == 'transaksiJual') : ?>
+            Transaksi Jual
+        <?php elseif ($_GET['page'] == 'transaksiBeli') : ?>
+            Transaksi Beli
+        <?php elseif ($_GET['page'] == 'laporanPemasukan') : ?>
+            Laporan Pemasukan
+        <?php elseif ($_GET['page'] == 'laporanPengeluaran') : ?>
+            Laporan Pengeluaran
         <?php endif; ?>
     </title>
 
@@ -81,8 +93,6 @@ if (!isset($_SESSION["idUser"])) {
                         }
                     } elseif ($_GET['page'] == 'dataUser') {
                         include '../admin/dataUser.php';
-                    } elseif ($_GET['page'] == 'dataBarang') {
-                        include '../admin/dataBarang.php';
                     } elseif ($_GET['page'] == 'dataJenisbarang') {
                         include '../admin/dataJenisbarang.php';
                     } elseif ($_GET['page'] == 'dataBarang') {

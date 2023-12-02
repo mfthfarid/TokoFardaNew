@@ -1,7 +1,7 @@
 <?php 
     class crudBarang extends koneksi {
         public function index() {
-            $query = "SELECT * FROM barang";
+            $query = "SELECT barang.Kode_Barang, barang.Nama_Barang, barang.Tgl_Expired, barang.Harga_Beli, barang.Harga_Jual, barang.Stok, barang.id_JenisBarang, barang.id_Supplier, jenis_barang.Jenis_Barang FROM barang JOIN jenis_barang ON barang.id_JenisBarang = jenis_barang.id_JenisBarang;";
             return $this->showData($query);
         }
 
