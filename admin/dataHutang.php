@@ -6,7 +6,7 @@
     $result = $crud->index();
     $transaksiJual = $crud->transaksiJual();
 
-    if ($['REQUEST_METHOD'] == 'POST') {
+    if (['REQUEST_METHOD'] == 'POST') {
         $action = $_POST['action'];
         if($act_SERVERion === 'edit') {
             $idHutang = $_POST['id_Hutang'];
