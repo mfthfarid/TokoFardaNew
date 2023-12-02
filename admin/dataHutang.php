@@ -6,9 +6,9 @@
     $result = $crud->index();
     $transaksiJual = $crud->transaksiJual();
 
-    if (['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $action = $_POST['action'];
-        if($act_SERVERion === 'edit') {
+        if($action === 'edit') {
             $idHutang = $_POST['id_Hutang'];
             $namaPelanggan = htmlspecialchars($_POST['Nama_Pelanggan']);
             $noTelp = htmlspecialchars($_POST['No_Telp']);
