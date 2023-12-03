@@ -24,7 +24,7 @@ if (!isset($_SESSION["idUser"])) {
             Dashboard
         <?php elseif ($_GET['page'] == 'dataUser') : ?>
             Data User
-        <?php elseif ($_GET['page'] == 'dataJenisbarang') : ?>
+        <?php elseif ($_GET['page'] == 'jenisBarang') : ?>
             Data Jenis Barang
         <?php elseif ($_GET['page'] == 'dataBarang') : ?>
             Data Barang
@@ -93,7 +93,7 @@ if (!isset($_SESSION["idUser"])) {
                         }
                     } elseif ($_GET['page'] == 'dataUser') {
                         include '../admin/dataUser.php';
-                    } elseif ($_GET['page'] == 'dataJenisbarang') {
+                    } elseif ($_GET['page'] == 'jenisBarang') {
                         include '../admin/dataJenisbarang.php';
                     } elseif ($_GET['page'] == 'dataBarang') {
                         include '../admin/dataBarang.php';
