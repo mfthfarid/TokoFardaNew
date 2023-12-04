@@ -63,13 +63,13 @@ endif;
                     <tr>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
+                        <th>Jenis Barang</th>
                         <th>Tanggal Expired</th>
-                        <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tfoot>
+                <!-- <tfoot>
                     <tr>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
@@ -78,14 +78,14 @@ endif;
                         <th>Stock</th>
                         <th>Aksi</th>
                     </tr>
-                </tfoot>
+                </tfoot> -->
                 <tbody>
                     <?php foreach ($result as $key => $data) : ?>
                         <tr>
                             <td><?= $data['Kode_Barang'] ?></td>
                             <td><?= $data['Nama_Barang']; ?></td>
+                            <td><?= $data['Jenis_Barang'] ?></td>
                             <td><?= $data['Tgl_Expired']; ?></td>
-                            <td><?= $data['Harga_Jual']; ?></td>
                             <td><?= $data['Stok']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-circle" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
@@ -251,18 +251,12 @@ endif;
                         <input type="text" name="Harga_Beli" id="hargaBeli" class="form-control" readonly required>
                     </div>
                     <div class="mb-3">
-                        <label for="">Jenis Barang</label>
-                        <select name="Jenis_Barang" class="form-select" id="jenisBarang" disabled>
-                            <option selected disabled>Pilih Jenis Barang</option>
-                            <?php foreach ($jenisBarang as $key => $value) {
-                            ?>
-                                <option value="<?= $value['id_JenisBarang']; ?>"><?= $value['Jenis_Barang']; ?></option>
-                            <?php } ?>
-                        </select>
+                        <label for="">Harga Jual</label>
+                        <input type="text" name="Harga_Jual" id="hargaJual" class="form-control" readonly required>
                     </div>
                     <div class="mb-3">
                         <label for="">Supplier</label>
-                        <select name="Nama_Supplier" class="form-select" id="namaSupplier" disabled>
+                        <select name="id_Supplier" class="form-select" id="namaSupplier" disabled>
                             <option selected disabled>Pilih Supplier</option>
                             <?php foreach ($supplier as $key => $value) {
                             ?>
@@ -291,6 +285,15 @@ endif;
         return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    function formatAngkaBayar(data) {
+        var angka = parseInt(data);
+        var format = angka.toLocaleString('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
+        });
+        return format;
+    }
+
     function edit(data) {
         // console.log(data);
         var hargaBeli = data.Harga_Beli;
@@ -307,13 +310,13 @@ endif;
     };
 
     function detail(data) {
-        // console.log(data);
+        // console.log(data.id_Supplier);
         var hargaBeli = data.Harga_Beli
+        var hargaJual = data.Harga_Jual
 
-        document.getElementById('hargaBeli').value = formatAngka(hargaBeli)
-        document.getElementById('jenisBarang').value = data.id_jenisBarang
+        document.getElementById('hargaBeli').value = formatAngkaBayar(hargaBeli)
+        document.getElementById('hargaJual').value = formatAngkaBayar(hargaJual)
         document.getElementById('namaSupplier').value = data.id_Supplier
-        document.getElementById('jenisBarang').value = data.id_JenisBarang
     };
 
     function confirmDelete(Kode_Barang) {
