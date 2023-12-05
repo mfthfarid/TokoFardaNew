@@ -20,19 +20,15 @@ while ($row = mysqli_fetch_array($result)) {
 
 if ($num != 0) {
     $_SESSION["statusLogin"] = "Berhasil Login";
+    $_SESSION["username"] = $Username;
     $_SESSION["namaUser"] = $namaUser;
     $_SESSION['level'] = $level;
+    $_SESSION['email'] = $email;
     $_SESSION["idUser"] = $idUser;
     $_SESSION["Level"] = $level;
 
     header('location: ../layout/home.php');
 } else {
-    session_destroy();
-?>
-    <script>
-        alert('Username atau Password tidak ditemukan');
-        window.location = "../index.php";
-    </script>
-<?php
+    $_SESSION['error'] = 'Username atau Password tidak ditemukan';
+    echo '<script>window.location.href="../index.php";</script>';
 }
-?>
