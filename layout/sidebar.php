@@ -38,9 +38,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Master Menu:</h6>
                     <a class="collapse-item" href="?page=dataUser">Data User</a>
-                    <a class="collapse-item" href="?page=jenisBarang">Data Jenis Barang</a>
+                    <a class="collapse-item" href="?page=dataJenisbarang">Data Jenis Barang</a>
                     <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
-                    <a class="collapse-item" href="?page=dataUser">Data Supplier</a>
+                    <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
                     <a class="collapse-item" href="?page=dataHutang">Data Hutang</a>
                 </div>
             </div>
@@ -105,9 +105,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Master Menu:</h6>
                     <a class="collapse-item" href="?page=dataUser">Data User</a>
-                    <a class="collapse-item" href="?page=jenisBarang">Data Jenis Barang</a>
+                    <a class="collapse-item" href="?page=dataJenisbarang">Data Jenis Barang</a>
                     <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
-                    <a class="collapse-item" href="?page=dataUser">Data Supplier</a>
+                    <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
                     <a class="collapse-item" href="?page=dataHutang">Data Hutang</a>
                 </div>
             </div>

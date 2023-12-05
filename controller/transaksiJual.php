@@ -1,11 +1,10 @@
 <?php 
     class transaksiJual extends koneksi {
         public function showBarang() {
-            $query = "SELECT * FROM barang where stok >= 10 AND Tgl_Expired > CURDATE()";
+            $query = "SELECT * FROM barang where Tgl_Expired > CURDATE()";
             return $this->execute($query);
         }
-        public function kodeTransaksi()
-    {
+        public function kodeTransaksi() {
         // Ambil data terakhir dari tabel
         $query = "SELECT Kode_TransaksiJual FROM transaksi_jual ORDER BY Kode_TransaksiJual DESC LIMIT 1";
         $result = $this->execute($query);
