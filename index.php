@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="<?= 'http://localhost/SI/tokoFarda/' ?>/img/gambar/shopp.png">
 
     <title>Login | Toko Farda</title>
 
@@ -18,6 +20,9 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= 'http://localhost/SI/tokoFarda/' ?>css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- sweetalert -->
+    <link rel="stylesheet" href="<?= 'http://localhost/SI/tokoFarda/'; ?>sweetalert2/sweetalert2.min.css">
 
 </head>
 
@@ -42,10 +47,10 @@
                                     </div>
                                     <form class="user" method="post" action="./auth/cek_login.php">
                                         <div class="form-group">
-                                            <input type="text" name="Username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan Username">
+                                            <input type="text" name="Username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan Username" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="Password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" name="Password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
@@ -53,7 +58,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="auth/verifikasiEmail.php">Forgot Password?</a>
                                     </div>
                                     <!-- <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
@@ -79,6 +84,33 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= 'http://localhost/SI/tokoFarda/' ?>js/sb-admin-2.min.js"></script>
+
+    <!-- sweetalert2 -->
+    <script src="<?= 'http://localhost/SI/tokoFarda/'; ?>sweetalert2/sweetalert2.min.js"></script>
+
+    <script>
+        <?php if (isset($_SESSION['success'])) : ?>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '<?= $_SESSION['success']; ?>',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php unset($_SESSION['success']);
+        endif; ?>
+
+        <?php if (isset($_SESSION['error'])) : ?>
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '<?= $_SESSION['error']; ?>',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php unset($_SESSION['error']);
+        endif; ?>
+    </script>
 
 </body>
 
