@@ -44,24 +44,21 @@ endif;
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tfoot>
+                <!-- <tfoot>
                     <tr>
                         <th>No</th>
                         <th>Jenis Barang</th>
                         <th>Aksi</th>
                     </tr>
-                </tfoot>
+                </tfoot> -->
                 <tbody>
                     <?php foreach ($result as $key => $data) : ?>
                         <tr>
-                             <td><?= $key + 1; ?></td>
+                            <td><?= $key + 1; ?></td>
                             <td><?= $data['Jenis_Barang']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-circle" data-bs-toggle="modal" data-bs-target="#editModal" onclick='edit(<?= json_encode($data); ?>)'>
-                                    <!-- <span class="icon text-white-50"> -->
                                         <i class="fas fa-pen"></i>
-                                    <!-- </span> -->
-                                    <!-- <span class="text">Edit</span> -->
                                 </button>
                                 <button type="button" class="btn btn-danger btn-circle" <?php echo "onclick='confirmDelete($data[id_JenisBarang])'" ?>>
                                     <!-- <span class="icon text-white-50"> -->

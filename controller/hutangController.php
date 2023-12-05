@@ -12,7 +12,7 @@ class hutang extends koneksi {
         $query = "UPDATE hutang SET No_Telp='$noTelp', Alamat='$alamat' WHERE id_Hutang='$idHutang'";
         $result = $this->execute($query);
 
-        if ($result == true) {
+        if ($result) {
             $_SESSION['success'] = "Data pelanggan berhasil diperbarui!";
         } else {
             $_SESSION['error'] = "Gagal memperbarui data pelanggan!";

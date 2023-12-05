@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tfoot>
+                <!-- <tfoot>
                     <tr>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Stock</th>
                         <th>Aksi</th>
                     </tr>
-                </tfoot>
+                </tfoot> -->
                 <tbody>
                     <?php foreach ($result as $key => $data) : ?>
                         <tr>

@@ -132,12 +132,12 @@ $result5 = $dashboard->dataStokBarang();
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
             </div>
@@ -168,13 +168,13 @@ $result5 = $dashboard->dataStokBarang();
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Stok</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
             </div>

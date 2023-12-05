@@ -3,7 +3,7 @@ class transaksiBeli extends koneksi
 {
     public function showBarang()
     {
-        $query = "SELECT * FROM barang WHERE stok < 10 OR Tgl_Expired <= CURDATE();";
+        $query = "SELECT * FROM barang";
         return $this->execute($query);
     }
 
