@@ -83,13 +83,6 @@
                                         <i class="fas fa-pen"></i>
                                     </span>
                                     <span class="text">Edit</span>
-                                <!-- </button>
-                                <button type="button" class="btn btn-info btn-icon-split" data-bs-toggle="modal" data-bs-target="#detailModal" onclick='detail(<?= json_encode($data); ?>)'>
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-eye"></i>
-                                    </span>
-                                    <span class="text">Detail</span>
-                                </button> -->
                                 <button type="button" class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#bayarModal" onclick='bayar(<?= json_encode($data); ?>)'>
                                     <span class="icon text-white-50">
                                         <i class="fas fa-hand-holding-usd fa-lg"></i>
@@ -184,49 +177,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- DetailModal -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Hutang</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="post">
-                    <div class="mb-3">
-                        <label for="">Jumlah Hutang</label>
-                        <input type="text" name="Jumlah_Hutang" id="jumlahHutang" class="form-control" readonly required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="">Jenis Barang</label>
-                        <select name="Jenis_Barang" class="form-select" id="jenisBarang" disabled>
-                            <option selected disabled>Pilih Jenis Barang</option>
-                            <?php foreach ($jenisBarang as $key => $value) {
-                            ?>
-                                <option value="<?= $value['id_Jenis_Barang']; ?>"><?= $value['Ju']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="">Supplier</label>
-                        <select name="Supplier" class="form-select" id="namaSupplier" disabled>
-                            <option selected disabled>Pilih Supplier</option>
-                            <?php foreach ($supplier as $key => $value) {
-                            ?>
-                                <option value="<?= $value['id_Supplier']; ?>"><?= $value['Kode_TransaksiJual']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </form>
             </div>

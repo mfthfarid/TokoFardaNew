@@ -1,9 +1,7 @@
 <?php
 session_start();
-class lupaPassword extends koneksi
-{
-    public function findEmail($email)
-    {
+class lupaPassword extends koneksi {
+    public function findEmail($email) {
         try {
             $query = "SELECT Id_User, Email FROM user WHERE Email='" . $email . "'";
             $result = $this->execute($query);
@@ -27,8 +25,7 @@ class lupaPassword extends koneksi
         }
     }
 
-    public function updatePassword($newPassword, $confirmPass, $idUser)
-    {
+    public function updatePassword($newPassword, $confirmPass, $idUser) {
         if ($newPassword == $confirmPass) {
             try {
                 $query = "UPDATE user SET Password='" . $confirmPass . "' WHERE Id_User='" . $idUser . "'";
@@ -49,4 +46,3 @@ class lupaPassword extends koneksi
         }
     }
 }
-s

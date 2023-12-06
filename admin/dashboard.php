@@ -21,9 +21,11 @@ $result5 = $dashboard->dataStokBarang();
 <div class="row">
     <!-- embed-responsive embed-responsive-16by9 -->
     <div class="">
-        <iframe title="Report Section" src="https://app.powerbi.com/view?r=eyJrIjoiM2FkOGQ0NTYtYTUzZC00ZWFjLTk3OGYtNDE0MzA2MjQwMDM5IiwidCI6IjUyNjNjYzgxLTU5MTItNDJjNC1hYmMxLWQwZjFiNjY4YjUzMCIsImMiOjEwfQ%3D%3D" frameborder="0" 
-                width="1250" height="1200" allowfullscreen="true">>
-        </iframe>
+        <!-- <div class="card-body"> -->
+            <iframe title="Report Section" src="https://app.powerbi.com/view?r=eyJrIjoiM2FkOGQ0NTYtYTUzZC00ZWFjLTk3OGYtNDE0MzA2MjQwMDM5IiwidCI6IjUyNjNjYzgxLTU5MTItNDJjNC1hYmMxLWQwZjFiNjY4YjUzMCIsImMiOjEwfQ%3D%3D" frameborder="0" 
+                    width="1110" height="1200" allowfullscreen="true">>
+            </iframe>
+        <!-- </div> -->
     </div>
 
     <!-- Earnings (Monthly) Card Example
