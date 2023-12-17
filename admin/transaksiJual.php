@@ -422,6 +422,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const buttonSimpan = document.getElementById('simpan');
         const totalBelanja = parseInt(document.getElementById('total1').value)
         const bayar = document.getElementById('bayar').value
+        const bayar2 = parseInt(bayar.replace(/,/g, ''), 10);
         const bayar1 = document.getElementById('bayar1')
         const uang = parseInt(bayar.replace(/,/g, ''), 10);
         const kembalian = document.getElementById('kembalian')
@@ -447,7 +448,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             status.value = 'hutang';
             jumlahHutang.value = format1;
             jumlahHutang1.value = sisa1;
-            bayar1.value = bayar;
+            bayar1.value = bayar2;
             buttonSimpan.disabled = false;
         } else {
             // if (isNaN(sisa) || isNaN(format)) {
