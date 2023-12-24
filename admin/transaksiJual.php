@@ -457,6 +457,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //     console.log(format);
             //     kembalian.value = format;
             // }
+            bayar1.value =bayar2;
             kembalian.value = format;
             status.value = 'lunas';
             buttonSimpan.disabled = false;

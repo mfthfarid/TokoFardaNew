@@ -22,7 +22,7 @@ $result5 = $dashboard->dataStokBarang();
     <!-- embed-responsive embed-responsive-16by9 -->
     <div class="">
         <!-- <div class="card-body"> -->
-            <iframe title="Report Section" src="https://app.powerbi.com/view?r=eyJrIjoiYzkwNDA0YzMtZmIxYi00NGU5LTg5ZTYtOWYzNmVlNDYxMTRmIiwidCI6IjUyNjNjYzgxLTU5MTItNDJjNC1hYmMxLWQwZjFiNjY4YjUzMCIsImMiOjEwfQ%3D%3D" frameborder="0" 
+            <iframe title="Report Section" src="https://app.powerbi.com/view?r=eyJrIjoiOWFlMzIxNzItYzJkYi00NmQxLWJiMzMtMjhjN2M0ZGZmNzNjIiwidCI6IjUyNjNjYzgxLTU5MTItNDJjNC1hYmMxLWQwZjFiNjY4YjUzMCIsImMiOjEwfQ%3D%3D" frameborder="0" 
                 width="1105" height="1200" allowfullscreen="true">
             </iframe>
             <!--      -->

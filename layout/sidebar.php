@@ -37,26 +37,11 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Master Menu:</h6>
-                    <a class="collapse-item" href="?page=dataUser">Data User</a>
+                    <!-- <a class="collapse-item" href="?page=dataUser">Data User</a> -->
                     <a class="collapse-item" href="?page=dataJenisbarang">Data Jenis Barang</a>
                     <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
                     <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
                     <a class="collapse-item" href="?page=dataHutang">Data Hutang</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Transaksi menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksiMenu" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-money-bill-wave"></i>
-                <span>Transaksi</span>
-            </a>
-            <div id="transaksiMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Transaksi Menu:</h6>
-                    <a class="collapse-item" href="?page=transaksiJual">Jual</a>
-                    <a class="collapse-item" href="?page=transaksiBeli">Beli</a>
                 </div>
             </div>
         </li>
@@ -124,7 +109,21 @@
                     <a class="collapse-item" href="?page=dataBarang">Data Barang</a>
                     <a class="collapse-item" href="?page=dataSupplier">Data Supplier</a>
                     <a class="collapse-item" href="?page=dataHutang">Data Hutang</a>
-                    <a class="collapse-item" href="?page=dataTransaksiJual">Data Transaksi Jual</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Transaksi menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksiMenu" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Transaksi</span>
+            </a>
+            <div id="transaksiMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Transaksi Menu:</h6>
+                    <a class="collapse-item" href="?page=transaksiJual">Jual</a>
+                    <a class="collapse-item" href="?page=transaksiBeli">Beli</a>
                 </div>
             </div>
         </li>
