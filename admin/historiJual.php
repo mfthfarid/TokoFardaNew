@@ -3,8 +3,10 @@ require '../koneksi.php';
 require '../controller/historiController.php';
 
 $histori = new histori();
-$result = $histori->showTransaksiJual();
-
+$result = $histori->index();
+$barang = $histori->barang();
+$jual = $histori->transaksiJual();
+// $detail = $histori->detailJual();
 ?>
 
 <!-- Datales Example -->
@@ -25,16 +27,6 @@ $result = $histori->showTransaksiJual();
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <!-- <tfoot>
-                    <tr>
-                        <th>Kode Transaksi</th>
-                        <th>Status Pembayaran</th>
-                        <th>Tanggal</th>
-                        <th>Total</th>
-                        <th>Bayar</th>
-                        <th>User</th>
-                    </tr>
-                </tfoot> -->
                 <tbody>
                     <?php foreach ($result as $key => $data) : ?>
                         <tr>
@@ -69,25 +61,25 @@ $result = $histori->showTransaksiJual();
                 <form action="" method="post">
                     <div class="mb-3">
                         <label for="">Nama Barang</label>
-                        <input type="text" name="Kode_Barang" id="namaBarang" class="form-control" readonly required>
-                        <?php foreach ($supplier as $key => $value) { ?>
-                            <option value="<?= $value['Kode_Barang']; ?>"><?= $value['Nama_Barang']; ?></option>
+                        <input type="text" name="Nama_Barang" id="namaBarang" class="form-control" readonly required>
+                            
                         </input>
-                        <?php } ?>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Harga</label>
+                        <input type="text" name="Harga_Jual" id="hargaBarang" class="form-control" readonly required>
                     </div>
                     <div class="mb-3">
                         <label for="">Jumlah Barang</label>
-                        <input type="text" name="Harga_Jual" id="hargaJual" class="form-control" readonly required>
+                        <input type="text" name="Jumlah_Barang" id="jumlahBarang" class="form-control" readonly required>
                     </div>
                     <div class="mb-3">
                         <label for="">Subtotal</label>
-                        <select name="id_Supplier" class="form-select" id="namaSupplier" disabled>
-                            <option selected disabled>Pilih Supplier</option>
-                            <?php foreach ($supplier as $key => $value) {
-                            ?>
-                                <option value="<?= $value['id_Supplier']; ?>"><?= $value['Nama_Supplier']; ?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" name="Subtotal_Barang" id="subtotalBarang" class="form-control" readonly required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Nama User</label>
+                        <input type="text" name="Nama_User" id="namaUser" class="form-control" readonly required>
                     </div>
 
                     <div class="modal-footer">
@@ -98,3 +90,14 @@ $result = $histori->showTransaksiJual();
         </div>
     </div>
 </div>
+
+<script>
+    function detail(data) {
+        // console.log(data.Kode_Barang);
+        document.getElementById('namaBarang').value = data.Nama_Barang
+        document.getElementById('hargaBarang').value = data.Harga_Jual
+        document.getElementById('jumlahBarang').value = data.Jumlah_Barang
+        document.getElementById('subtotalBarang').value = data.Subtotal_Barang
+        document.getElementById('namaUser').value = data.Nama_User
+    };
+</script>
